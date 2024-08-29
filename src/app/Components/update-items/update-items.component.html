@@ -1,0 +1,32 @@
+<div class="flex">
+    <app-my-items-dashboard class="my-3 p-3"></app-my-items-dashboard>
+    <div class="m-2 p-2">
+        <h1 class="text-center  text-2xl font-bold">Update Product</h1>
+        @if(allProduct.length>0){
+        <div class="grid grid-cols-3 gap-4 mx-2 p-2">
+            @for(product of allProduct; track product.name){
+            @if(this.authService.getUserName()===product.seller){
+            <div class="border p-2 m-2 shadow rounded-lg">
+                <div class="w-32">
+                    <img src={{product.images}} class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.description}}</p>
+                    <button (click)="updateProduct(product)"
+                        class="bg-yellow-600 p-2 m-2 mx-3 text-white rounded hover:bg-yellow-300">Product
+                        Update</button>
+                </div>
+            </div>
+            }
+            }
+        </div>
+        }
+        @else {
+        <div class="font-bold text-2xl m-auto">No Data Found !</div>
+        }
+    </div>
+
+
+
+</div>

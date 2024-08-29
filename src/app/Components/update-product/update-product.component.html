@@ -1,0 +1,16 @@
+<div class=" flex ">
+    <app-my-items-dashboard class="my-3 p-3 "></app-my-items-dashboard>
+    <form class="flex w-[500px] container justify-center items-center flex-col m-auto my-3 p-3 border border-black "
+        action="" [formGroup]="items">
+        <h1 class="font-bold text-3xl">updata Product</h1>
+        <input class="m-2 p-2  border border-black rounded" type="text" formControlName="name"
+            placeholder="Enter the product name...">
+        <textarea class="m-2 p-2  border border-black rounded" rows="5" cols="22" placeholder="Enter the product descrition..."
+            formControlName="description" ></textarea>
+        <input class="m-2 p-2  border border-black rounded" type="number" formControlName="price"
+            placeholder="Enter the product price...">
+        <input class="m-2 p-2  border border-black rounded" type="text" formControlName="images"
+            placeholder="Enter the product's url...">
+        <button [disabled]="items.status==='INVALID'" (click)="getUpdateData()" class="m-2 p-2  border border-black rounded bg-blue-700 text-white disabled:bg-gray-200" >Save</button>
+    </form>
+</div>

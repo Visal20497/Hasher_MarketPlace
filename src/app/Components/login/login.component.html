@@ -1,0 +1,18 @@
+<form action=""
+    class=" container m-auto my-6 border border-black shadow-xl rounded h-[400px] w-4/12 flex flex-col  p-4 justify-center items-center"
+    [formGroup]="loginFrom">
+    <h1 class="font-bold text-2xl">PLEASE LOGIN</h1>
+    <input class="border border-black my-3 p-2 rounded" type="text" placeholder="Enter your email..."
+        formControlName="email">
+    <h3 class="text-red-600 " *ngIf="(loginFrom.controls['email'].invalid) && (loginFrom.controls['email'].touched)">Enter the correct email*</h3>
+    <input class="border border-black my-3 p-2 rounded" type="password" placeholder="Enter your password..."
+        formControlName="password">
+    <h3 class="text-red-600 " *ngIf="(loginFrom.controls['password'].invalid) && (loginFrom.controls['password'].touched) ">Enter the correct password*</h3>
+    <div class="flex justify-between m-3  px-4 text-white">
+        <button [disabled]="loginFrom.status==='INVALID'"
+            class="border  text-2xl p-1 mx-2 font-blod rounded bg-green-500 shadow-lg disabled:bg-gray-200 hover:bg-green-300"
+            (click)="login()">LogIn</button>
+        <button class="border  text-2xl p-1 mx-2 font-blod rounded shadow-lg bg-sky-500 hover:bg-sky-300" (click)="reset()">Reset</button>
+    </div>
+
+</form>

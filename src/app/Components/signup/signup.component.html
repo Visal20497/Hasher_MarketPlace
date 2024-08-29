@@ -1,0 +1,66 @@
+<form action=""
+    class=" container m-auto my-6 border border-black shadow-xl rounded  w-6/12 flex flex-col  p-4 justify-center items-center"
+    [formGroup]="user">
+    <h1 class="font-bold text-2xl">PLEASE SIGN UP</h1>
+    <div class="row flex ">
+        <div class="col m-4">
+            <input class="border border-black my-2 p-2 rounded" type="text" placeholder="Enter your name..."
+                formControlName="name">
+            <h3 class="text-red-600 " *ngIf="(user.controls['name'].invalid) && (user.controls['name'].touched) ">Minum 5 characters*</h3>
+        </div>
+        <div class="col m-4">
+            <input class="border border-black my-2 p-2 rounded" type="text" placeholder="Enter your email..."
+                formControlName="email">
+            <h3 class="text-red-600 " *ngIf="(user.controls['email'].invalid) && (user.controls['email'].touched) ">
+                Enter
+                the correct email*</h3>
+        </div>
+    </div>
+    <div class="row flex">
+        <div class="col m-4">
+
+            <input class="border border-black my-2 p-2 rounded" type="password" placeholder="Enter your password..."
+                formControlName="password">
+            <h3 class="text-red-600"
+                *ngIf="(user.controls['password'].invalid) && (user.controls['password'].touched) ">
+                Enter the correct password*</h3>
+        </div>
+        <div class="col m-4">
+            <input class="border border-black my-2 p-2 rounded" type="password" placeholder="Confirm password..."
+                formControlName="cpassword">
+            <h3 class="text-red-600 "
+                *ngIf="(user.controls['cpassword'].invalid) && (user.controls['cpassword'].touched)">
+                Confirm Password required*</h3>
+            <h3 class="text-red-600 " *ngIf="((user.controls['cpassword'].value)!== (user.controls['password'].value))&&( (user.controls['cpassword'].touched)&&
+        (user.controls['cpassword'].valid))">
+                Password is not Match*</h3>
+        </div>
+    </div>
+    <div class="row flex">
+        <div class="col m-4">
+            <input class="border border-black my-2 p-2 rounded" type="text" placeholder="Enter secret answer..."
+                formControlName="answer">
+            <h3 class="text-red-600 m-1"
+                *ngIf="(user.controls['answer'].invalid) && (user.controls['answer'].touched) ">
+                answer is required*</h3>
+        </div>
+        <div class="col m-4">
+            <input class="border border-black my-2 p-2 rounded" type="text" placeholder="Enter your address..."
+                formControlName="address">
+            <h3 class="text-red-600 m-1"
+                *ngIf="(user.controls['address'].invalid) && (user.controls['address'].touched) ">
+                address is required*</h3>
+        </div>
+    </div>
+    <div class="m-2">
+        Gender : <input formControlName="gender" type="radio" value="male" name="gender">Male
+        <input formControlName="gender" type="radio" value="female" name="gender">Female
+    </div>
+    <div class="flex justify-between m-3  px-4 text-white">
+        <button [disabled]="user.status==='VALID'?false:true" (click)="Submit()"
+            class="border  text-2xl p-1 mx-2 font-blod rounded bg-green-500 shadow-lg disabled:bg-gray-200 hover:bg-green-300">Sign Up</button>
+        <button (click)="Reset()" class="border  text-2xl p-1 mx-2 font-blod rounded shadow-lg bg-yellow-500 hover:bg-yellow-300">Reset</button>
+    </div>
+
+
+</form>

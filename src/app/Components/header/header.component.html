@@ -1,0 +1,26 @@
+<div class="flex mx-1 p-2 justify-between font-bold items-center border border-black">
+    <div>
+        <h2><a routerLink="/" routerLinkActive="active" class="text-4xl text-yellow-700 hover:text-yellow-300">Hashers
+                Marketplace</a></h2>
+    </div>
+    <div>
+        <ul class="flex mx-2 p-2 justify-between text-xl">
+            @if(authServices.isAuthenticated()){
+            <li class="mx-2 p-2 cursor-pointer text-blue-700 hover:text-red-600"><a routerLink="/dashboard"
+                    routerLinkActive="active">Dashboard </a></li>
+            <li class="mx-2 p-2 cursor-pointer  text-blue-700 hover:text-red-600"><a routerLink="/myitem"
+                    routerLinkActive="active">MyItems</a></li>
+            <li class="mx-2 p-2 cursor-pointer  text-blue-700 hover:text-red-600"><a routerLink="/cart"
+                    routerLinkActive="active">Cart{{this.cartLength}}</a></li>
+            <li class="mx-2 p-2 cursor-pointer  text-blue-700 hover:text-red-600"><a routerLink="/transaction"
+                    routerLinkActive="active">MyTransaction</a></li>
+            <li class="mx-2 p-2 cursor-pointer  text-blue-700 hover:text-red-600" (click)="Logout()" (click)="authServices.logoutUser()">
+                <a>Logout<strong class="text-violet-600  hover:text-red-600">( User: {{this.authServices.getUserName()}})</strong></a></li>
+            }@else {
+            <li class="mx-2 p-2  text-blue-700 hover:text-red-600"><a routerLink="/login"
+                    routerLinkActive="active">Login</a></li>
+            <li class="mx-2 p-2  text-blue-700 hover:text-red-600"><a routerLink="/signup"
+                    routerLinkActive="active">Register</a></li>
+            }
+        </ul>
+    </div>

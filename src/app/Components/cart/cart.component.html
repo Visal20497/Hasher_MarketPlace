@@ -1,0 +1,36 @@
+<div class="flex flex-col ">
+    <h1 class="text-center font-bold text-2xl m-2 p-2 ">My Cart</h1>
+    <div class="flex">
+        @if(cartItem.length>0){
+        <div class="w-7/12 m-2 p-2">
+            @for( item of cartItem ;track item.name){
+            <div class="container  border border-black shadow rounded m-2 p-2">
+                <div class="font-bold text-xl">
+                    {{item.name}}
+                </div>
+                <div class="flex flex-col">
+                    <h5 class="card-title">{{item.description}}</h5>
+                    <p class="card-text">Rs. {{item.price}}</p>
+                    <p class="card-text">Qty: {{item.qty}}</p>
+                    <button (click)=" deleteCartItem(item)"
+                        class="bg-red-500 w-36 text-white rounded p-1 m-1 hover:bg-red-300">Remove</button>
+                </div>
+            </div>
+            }
+        </div>
+        }@else {
+        <h1 class="font-bold text-center m-auto">No Item in Cart</h1>
+        }
+        @if(cartItem.length>0){
+        <div class="w-3/12 h-48 mx-9 my-5 p-2 border rounded border-black flex flex-col justify-center items-center">
+            <div class="font-bold">Total Itmes : {{cartItem.length}}</div>
+            <div>Shiping Charge :Rs.{{25}}</div>
+            <div class="font-bold">Total amount : Rs.{{Total+25}}</div>
+            <button routerLink="/payment" routerLinkActive="active" (click)="payment()"
+                class="bg-yellow-600 m-2 p-2 text-white rounded hover:bg-yellow-400">Payment</button>
+        </div>
+        }
+
+    </div>
+
+</div>

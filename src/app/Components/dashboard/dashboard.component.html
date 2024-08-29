@@ -1,0 +1,42 @@
+<div class="container">
+    <h1 class="font-bold text-2xl text-center m-2 p-2">All Product List </h1>
+        <div class="flex justify-evenly" [formGroup]="filer">
+            <div class=" m-2 p-2">
+                <input type="text" class="border p-2 rounded border-black " #searchInput (blur)="hideSearch()"
+                    placeholder=" Search..." formControlName="searchByName" (keyup)="search($event)">
+            </div>
+            <div class="m-2 p-2 flex items-center">
+                <span class="font-bold">Sort by: </span>
+                <select class="border border-black mx-1 p-2 rounded " formControlName="shortBySelectedValue"
+                    (change)="sortByPrice()">
+                    <option value="">Select</option>
+                    <option value="name_asc">Name: A to Z</option>
+                    <option value="name_desc">Name: Z to A</option>
+                    <option value="price_asc">Price: Low to High</option>
+                    <option value="price_desc">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+        <hr>
+        <div class="grid grid-cols-3 gap-4 mx-2 p-2">
+            @for(product of allProduct; track product.name ){
+            <div class="border p-2 m-2 shadow rounded-lg">
+                <div class="w-32">
+                    <img src={{product.images}} class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title font-bold my-1 py-1">{{product.name}}</h5>
+                    <p class="card-text">{{product.description}}</p>
+                    <p>Rs. {{product.price}}</p>
+                   @if(this.authService.getUserName()!==product.seller){
+                    <button (click)="AddtoCart(product)" class="bg-blue-600 p-2 m-2 mx-3 text-white rounded hover:bg-blue-300">Add to
+                        Cart</button>
+                   }
+                   @else {
+                    <button disabled class="bg-red-300 p-2 m-2 mx-1 text-white rounded">MyProduct</button>
+                   }
+                </div>
+            </div>
+            }
+        </div>
+    </div>

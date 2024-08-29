@@ -1,0 +1,68 @@
+<div class="p-2 m-2">
+    <h1 class="text-center font-bold text-2xl">Profile :{{this.AuthService.getUserName()}}</h1>
+    <div class="flex justify-between items-center m-2 p-2">
+        <div class="w-6/12 flex flex-col justify-center items-center">
+            <h1 class="font-bold m-2 p-2">Sell Product</h1>
+            <table class="table-auto border-collapse border-3 border-gray-500 text-center">
+                <thead>
+                    <tr>
+                        <th class="border-2 p-6 m-2">Product Name</th>
+                        <th class="border-2 p-6 m-2">Qty</th>
+                        <th class="border-2 p-6 m-2">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(product of AllProduct; track product.name){
+                    @if(this.AuthService.getUserName()===product.seller){
+                    <tr>
+                        <td class="border-2 p-2 m-2">{{product.name}}</td>
+                        <td class="border-2 p-2 m-2">1</td>
+                        <td class="border-2 p-2 m-2">{{product.price}}</td>
+                    </tr>
+                    }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="w-6/12 flex flex-col items-center justify-center ">
+            <h1 class="font-bold m-2 p-2">Buy Product</h1>
+            <table class="table-auto border-collapse border-3 text-center border-gray-500">
+                <thead>
+                    <tr>
+                        <th class="border-2 p-6 m-2">Product Name</th>
+                        <th class="border-2 p-6 m-2">Qty</th>
+                        <th class="border-2 p-6 m-2">Price</th>
+                        <th class="border-2 p-6 m-2">BuyerUser</th>
+                        <th class="border-2 p-6 m-2">Transction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of AllTransction">
+                        <ng-container *ngIf="item.buyUser !== AuthService.getUserName()">
+                            <td class="border-2 p-2 m-2">
+                                @for(n of item.cartItem ; track n.name){
+                                <span>{{n.name}}</span><br><br>
+                                <hr>
+                                }
+                            </td>
+                            <td class="border-2 p-2 m-2">
+                                @for(q of item.cartItem; track q.name){
+                                <span>{{q.qty}}</span><br><br>
+                                <hr>
+                                }
+                            </td>
+                            <td class="border-2 p-2 m-2">
+                                @for(p of item.cartItem ; track p.name){
+                                <span>Rs.{{p.price}}</span><br><br>
+                                <hr>
+                                }
+                            </td>
+                            <td class="border-2 p-2 m-2">{{item.buyUser}}</td>
+                            <td class="border-2 p-2 m-2">{{item.details.create_time | date}}</td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
